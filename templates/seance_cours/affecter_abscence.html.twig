@@ -1,0 +1,42 @@
+{% extends "template.html.twig" %}
+{% block body %}
+
+
+	<h1>Affecter Abscence</h1>
+	{{ form_start(form) }}
+	{{ form_row(form.cin) }}
+	{{ form_row(form.firstName) }}
+	{{ form_row(form.lastname) }}
+
+
+	{{ form_end(form) }}
+	{#
+					<!-- The Modal -->
+					<div class="modal fade" id="myModal">
+						<div class="modal-dialog modal-dialog-centered">
+							<div class="modal-content">
+					
+								<!-- Modal Header -->
+								<div class="modal-header">
+								<h4 class="modal-title">Affecter Abscence</h4>
+					
+									<button type="button" class="close" data-dismiss="modal">&times;</button>
+								</div>
+					
+								<!-- Modal body -->
+								<div class="modal-body">
+					
+								</div>
+					
+								<!-- Modal footer -->
+								<div class="modal-footer">
+									<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+								</div>
+					
+							</div>
+						</div>
+					</div>
+					#}
+
+
+{% endblock %}

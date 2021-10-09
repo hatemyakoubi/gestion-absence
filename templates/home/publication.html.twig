@@ -1,0 +1,32 @@
+{% extends "template.html.twig" %}
+{% block body %}
+<h1>Tableau des événements<h1>
+
+
+
+<div class="row">
+
+{% for pub in publications %}
+  
+<div class="col-sm-6" style="color:{{ random(['#12CBC4', '#1289A7', '#0652DD','#706fd3','#2c2c54']) }};" >
+
+    <div class="card" style="max-width: 80%; max-height: 80%; display: block;">
+        <div class="card-body">
+            <h3 class="card-title">{{pub.titre}}</h3>
+            <hr>
+            <p class="card-text" style="font-size: medium;">{{pub.description}}</p>
+           
+            <h5 style="text-align: right;">
+                publié le {{ pub.DatePublicationAt ? pub.DatePublicationAt|date('d-m-Y')}}
+            </h5>
+        </div>
+    </div>
+</div>
+
+{% endfor %}
+</div>
+
+
+{% endblock %}
+
+

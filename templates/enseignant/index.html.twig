@@ -1,0 +1,49 @@
+{% extends 'template.html.twig' %}
+
+{% block title %}Enseignant index{% endblock %}
+
+{% block body %}
+    <h1>Liste des enseignants </h1>
+
+    <table class="table" data-toggle="table"  data-search="true" data-show-columns="true" data-pagination="true">
+        <thead>
+            <tr>
+                <th data-sortable="true" data-field="cin">Id</th>
+                <th>Cin</th>
+                  <th data-sortable="true" data-field="firstname">Firstname</th>
+                <th data-sortable="true" data-field="lastname">Lastname</th>   
+                <th>Diplome</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Contrat</th>
+                <th>RegisterAt</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for enseignant in enseignants %}
+            <tr>
+                <td>{{ enseignant.id }}</td>
+                <td>{{ enseignant.cin }}</td>
+                <td>{{ enseignant.firstname }}</td>
+                <td>{{ enseignant.lastname }}</td>
+                <td>{{ enseignant.diplome }}</td>
+                <td>{{ enseignant.email }}</td>
+                <td>{{ enseignant.phone }}</td>
+                <td>{{ enseignant.contrat }}</td>
+                 <td>{{ enseignant.registerAt ? enseignant.registerAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('enseignant_show', {'id': enseignant.id}) }}"><i class="far fa-eye"></i></a>
+                    <a href="{{ path('enseignant_edit', {'id': enseignant.id}) }}"><i class="far fa-edit" style="margin-left: 20px;"></i></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">Aucun enregistrement trouvé</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('enseignant_new') }}"><button class="btn btn-primary">Créer un nouveau enseignant</button></a>
+{% endblock %}

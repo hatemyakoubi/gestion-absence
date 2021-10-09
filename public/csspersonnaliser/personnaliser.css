@@ -1,0 +1,12 @@
+label[for="seance_candidat"]
+{
+    display:none;
+}
+#seance_candidat{
+     display:none;
+}
+/*modal*/
+.own-modal{
+	padding-top: 120px;
+}
+

@@ -1,0 +1,14 @@
+{% extends 'template.html.twig' %}
+
+{% block title %}Modifier SeanceCours{% endblock %}
+
+{% block body %}
+    <h1>Modifier Seance de Cours</h1>
+
+   {{ include('seance_cours/_form.html.twig', {'button_label': 'Modifier'}) }}
+
+<a href="{{ path('seance_cours_index') }}"><button type="button" class="btn btn-outline-warning">Retour à la liste</button></a>
+
+
+    {{ include('seance_cours/_delete_form.html.twig') }}
+{% endblock %}

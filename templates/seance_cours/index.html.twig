@@ -1,0 +1,59 @@
+{% extends 'template.html.twig' %}
+
+
+{% block title %}Listes des  séances{% endblock %}
+
+
+
+{% block body %}
+    <h1>Listes des séances</h1>
+
+<table class="table" data-toggle="table" data-search="true" data-show-columns="true" data-pagination="true">
+
+        <thead>
+            <tr>
+                <th data-sortable="true" data-field="id">Id</th>
+                  <th>Cours</th>
+                <th>Enseignant</th>
+                <th data-sortable="true" data-field="Debcours">Début de cours</th>
+
+                <th data-sortable="true" data-field="Fincours">Fin de cours</th>
+
+               <th>Description</th>
+                <th>Candidats</th>  
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for seance_cour in seance_cours %}
+            <tr>
+                <td>{{ seance_cour.id }}</td>
+                <td>{{ seance_cour.title }}</td>
+                <td>{{ seance_cour.enseignant }}</td>
+                <td>{{ seance_cour.startdateAt ? seance_cour.startdateAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ seance_cour.EnddateAt ? seance_cour.EnddateAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ seance_cour.description }}</td>
+                <td>
+                {% for c in seance_cour.candidat %}
+                  <ul><li>{{c.firstname}} </li></ul>
+                {% endfor %}
+                </td>
+          
+                <td>
+                    <a href="{{ path('seance_cours_show', {'id': seance_cour.id}) }}"><i class="far fa-eye"></i></a>
+
+                    <a href="{{ path('seance_cours_edit', {'id': seance_cour.id}) }}"><i class="far fa-edit" style="margin-left:5px;"></i></a>
+
+                    </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="10">Aucun enregistrement trouvé</td>
+
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+<a href="{{ path('seance_cours_new') }}"><button class="btn btn-primary">Créer une nouvelle séance</button></a>
+
+{% endblock %}

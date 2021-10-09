@@ -1,0 +1,130 @@
+{% extends 'template.html.twig' %}
+
+
+{% block title %}SeanceCours
+{% endblock %}
+
+{% block body %}
+	<h1>Info sur la seance de cours :{{ seance_cour.title }}</h1>
+	<table class="table">
+		<tr>
+			<th>ID</th>
+			<th>Enseignant</th>
+			<th>Titre</th>
+			<th>Début séance</th>
+			<th>Fin séance</th>
+			<th>Déscription de la séance</th>
+
+		</tr>
+		<tr>
+			<td>
+				{{seance_cour.id}}
+			</td>
+			<td>
+				{{seance_cour.enseignant}}
+			</td>
+			<td>
+				{{seance_cour.title}}
+			</td>
+			<td>
+				{{ seance_cour.startdateAt ? seance_cour.startdateAt|date('Y-m-d H:i:s') : '' }}
+			</td>
+			<td>
+				{{ seance_cour.EnddateAt ? seance_cour.startdateAt|date('Y-m-d H:i:s') : '' }}
+			</td>
+			<td>
+				{{seance_cour.description}}
+			</td>
+
+		</tr>
+	</table>
+
+	<h1>Listes des candidats</h1>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>CIN</th>
+				<th>Nom</th>
+				<th>Affecter une abscence</th>
+				<th>Abscence déja affecter</th>
+
+			</tr>
+		</thead>
+
+		<tbody>
+
+			{% for candidat in seance_cour.candidat %}
+
+				<tr>
+					<td class="id_candidat">{{ candidat.id }}</td>
+					<td class="cin">{{ candidat.cin }}</td>
+					<td class="nom">{{ candidat.firstName }}</td>
+					<td>
+						<a href="" class="view" data-toggle="modal">
+							<i class="far fa-plus-square" style="margin-left: 50px;"></i>
+						</a>
+
+						{#<a href="{{ path('abscence_candidat_seance', {'id': candidat.id} ) }}" data-toggle="modal" data-target="#myModal">	
+																															<i class="far fa-plus-square" style="margin-left: 50px;"></i>																																																																													
+																																						</a>#}
+
+
+					</td>
+					<td>
+						test
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="3">Aucun enregistrement trouvé</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+
+	</table>
+	{#{% include "seance_cours/affecter_abscence.html.twig" %}#}
+
+	<a href="{{ path('seance_cours_index') }}">
+		<button type="button" class="btn btn-outline-warning">Retour à la liste</button>
+	</a>
+
+
+	<a href="{{ path('seance_cours_edit', {'id': seance_cour.id}) }}">
+		<button type="button" class="btn btn-outline-warning">Modifier</button>
+	</a>
+
+
+	{{ include('seance_cours/_delete_form.html.twig') }}
+
+	<div class="modal fade" id="myModal">
+		<div class="modal-dialog modal-dialog-centered">
+			<div
+				class="modal-content">
+
+				<!-- Modal Header -->
+				<div class="modal-header">
+					<h4 class="modal-title">Affecter Abscence</h4>
+
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+
+				<!-- Modal body -->
+				<div class="modal-body">
+
+					<input type="text" name="idchamps">
+
+				</div>
+
+
+				<!-- Modal footer -->
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+
+{% endblock %}

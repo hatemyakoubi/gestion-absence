@@ -1,0 +1,13 @@
+{% extends 'template.html.twig' %}
+
+
+
+{% block body %}
+    <h1>Modifier enseignant</h1>
+
+    {{ include('enseignant/_form.html.twig', {'button_label': 'Modifer'}) }}
+
+    <a href="{{ path('enseignant_index') }}"><button type="button" class="btn btn-outline-warning">Retour à la liste</button></a>
+
+    {{ include('enseignant/_delete_form.html.twig') }}
+{% endblock %}

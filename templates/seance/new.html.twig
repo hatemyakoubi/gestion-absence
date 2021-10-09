@@ -1,0 +1,100 @@
+{% extends 'template.html.twig' %}
+
+{% block title %}New Seance{% endblock %}
+
+
+
+{% block body %}
+
+    <h1>Create new Seance</h1>
+    
+      {{form_start(form) }}
+		{{form_row(form.title) }}
+{{form_row(form.enseignant) }}
+
+
+
+
+
+
+
+
+<button class="btn btn-primary">{{ button_label|default('Gérer') }}</button>
+
+		{{ form_end(form) }}
+
+{#{{ include('seance/_form.html.twig') }}#}
+
+
+
+
+<a href="{{ path('seance_index') }}">back to list</a>
+{% if form.vars.submitted %}
+
+
+<table class="table" data-toggle="table" data-search="true" data-show-columns="true" data-pagination="true">
+
+<thead>
+
+<th>Id</th><th>Cin</th>	<th>FirstName</th><th>Lastname</th><th>Email</th><th>Phone</th>	<th>Address</th>	<th>Level</th>
+</thead>
+	<tbody>
+{% for candidat in form.candidat.vars.choices %}
+
+	<tr>
+			
+<td>{{ candidat.data.id }}</td>
+
+		
+			
+<td>{{ candidat.data.cin }}</td>
+
+		
+		
+<td>{{ candidat.data.firstName }}</td>
+
+		
+<td>{{ candidat.data.lastname }}</td>
+
+		
+			
+<td>{{ candidat.data.email }}</td>
+
+		
+			
+<td>{{ candidat.data.phone }}</td>
+
+		
+<td>{{ candidat.data.address }}</td>
+
+		
+		
+<td>{{ candidat.data.level }}</td>
+
+
+
+		</tr>
+
+{#{{ dump(candidat.data) }}#}
+{% else %}
+<tr>
+	<td colspan="10">Aucun enregistrement trouvé</td>
+</tr>
+
+{% endfor %}
+	</tbody>
+</table>
+{% endif %}
+{#{% set v = form.candidat.vars.value %}
+
+<h1>{{v}}</h1>#}
+
+
+
+{% endblock %}
+
+
+
+
+
+

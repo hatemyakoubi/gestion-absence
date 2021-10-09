@@ -1,0 +1,57 @@
+{% extends "template.html.twig" %}
+
+
+
+{% block body %}
+    <h1>Listes des candidats</h1>
+ {% for msg in app.flashes('msg') %}
+    <div class="alert alert-primary" role="alert">
+        {{msg}}
+    </div>
+    {% endfor %}
+   <table class="table" data-toggle="table"  data-search="true" data-show-columns="true" data-pagination="true">
+        <thead>
+            <tr>
+              <!--<th>Id</th>-->  
+               <th data-sortable="true" data-field="cin">Cin</th>
+                <th>FirstName</th>
+                <th data-sortable="true" data-field="lastname">Lastname</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Address</th>
+                <th data-sortable="true" data-field="RegistrationAt">RegistrationAt</th>
+                <th>Level</th>
+                <th>formations</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for candidat in candidats %}
+            <tr>
+               <!-- <td>{{ candidat.id }}</td>-->
+                <td>{{ candidat.cin }}</td>
+                <td>{{ candidat.firstName }}</td>
+                <td>{{ candidat.lastname }}</td>
+                <td>{{ candidat.email }}</td>
+                <td>{{ candidat.phone }}</td>
+                <td>{{ candidat.address }}</td>
+                <td>{{ candidat.registrationAt ? candidat.registrationAt|date('Y-m-d') : '' }}</td>
+                <td>{{ candidat.level }}</td>
+                 <td>{% for formation in candidat.formation %}
+                  <ul><li>{{ formation.title }}</li></ul>
+                    {% endfor %}</td>
+                <td>
+                    <a href="{{ path('candidat_show', {'id': candidat.id}) }}"><i class="far fa-eye"></i></a>
+                    <a href="{{ path('candidat_edit', {'id': candidat.id}) }}"><i class="far fa-edit" style="margin-left: 20px;"></i></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="10">Aucun enregistrement trouvé</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('candidat_new') }}"><button class="btn btn-primary">Créer un nouveau candidat</button></a>
+{% endblock %}

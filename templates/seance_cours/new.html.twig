@@ -1,0 +1,89 @@
+{% extends 'template.html.twig' %}
+
+{% block title %}New SeanceCours{% endblock %}
+
+
+{% block body %}
+    <h1>Crée une nouvelle seance de cours</h1>
+
+   {#{{ include('seance_cours/_form.html.twig') }}#}
+{{form_start(form) }}
+
+    <div class="row">
+        <div class="col-6">
+          {{form_row(form.title) }}
+        </div>
+         <div class="col-6">
+            {{form_row(form.enseignant) }}
+         </div>
+
+    </div>
+    <div class="row">
+        <div class="col-6">
+             {{form_row(form.startdateAt) }}
+        </div>
+        <div class="col-6">
+            {{form_row(form.EnddateAt) }}
+        </div>
+     </div>
+
+{{form_row(form.description) }}
+
+
+
+<div class="row">
+ <button class="btn btn-primary" style="margin: 10px 10px 10px 10px;">Crée</button>
+  
+</div>
+{% if (form.vars.submitted) and (form.candidat.vars.choices)!=null %}
+
+{{form_row(form.Enregistrer, {'attr': {'class':'btn btn-success'} }) }}
+
+{% endif %}
+
+{{form_end(form)}}
+
+<a href="{{ path('seance_cours_index') }}"><button type="button" class="btn btn-outline-warning">retour à la liste</button></a>
+
+
+
+{#{% if (form.vars.submitted) and (form.candidat.vars.choices)!=null %}
+
+
+
+
+  <table class="table">
+        <tr>
+                <th>N°Cin</th>
+                <th>Nom </th>
+                <th>Niveau</th>
+                <th>Adress</th>
+        </tr>
+   
+    {% for c in form.candidat.vars.choices %}
+    
+          <tr>
+                <td>{{ c.data.cin}}</td>
+                <td>{{ c.data.firstname }}</td>
+
+                <td>{{ c.data.level }}</td>
+
+                <td>{{ c.data.address }}</td>
+
+         </tr>
+
+     {% endfor %}
+   
+</table>
+        {% else %}
+            <tr>
+                    <td colspan="6">Aucun groupe trouvé</td>
+                   
+            </tr>
+
+{% endif %}#}
+
+{% endblock %}
+
+
+

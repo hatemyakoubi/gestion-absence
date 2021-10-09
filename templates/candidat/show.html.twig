@@ -1,0 +1,84 @@
+{% extends "template.html.twig" %}
+
+{% block body %}
+    <h1>Candidat</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ candidat.id }}</td>
+            </tr>
+            <tr>
+                <th>Cin</th>
+                <td>{{ candidat.cin }}</td>
+            </tr>
+            <tr>
+                <th>FirstName</th>
+                <td>{{ candidat.firstName }}</td>
+            </tr>
+            <tr>
+                <th>Lastname</th>
+                <td>{{ candidat.lastname }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ candidat.email }}</td>
+            </tr>
+            <tr>
+                <th>Phone</th>
+                <td>{{ candidat.phone }}</td>
+            </tr>
+            <tr>
+                <th>Address</th>
+                <td>{{ candidat.address }}</td>
+            </tr>
+            <tr>
+                <th>RegistrationAt</th>
+                <td>{{ candidat.registrationAt ? candidat.registrationAt|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Level</th>
+                <td>{{ candidat.level }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('candidat_index') }}"><button type="button" class="btn btn-outline-warning">Retour à la liste</button></a>
+
+    <a href="{{ path('candidat_edit', {'id': candidat.id}) }}"><button type="button" class="btn btn-outline-warning">Modifier</button></a>
+
+    {{ include('candidat/_delete_form.html.twig') }}
+
+
+    <a href="{{ path('candidat_formation', {'id': candidat.id}) }}"><button type="button" class="btn btn-primary">Affecter une formation</button></a>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Title</th>
+            <th>actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for formation in candidat.formation %}
+            <tr>
+                <td>{{ formation.id }}</td>
+                <td>{{ formation.title }}</td>
+                <td>
+                    <a href="{{ path('formation_show', {'id': formation.id}) }}">show</a>
+                    <a href="{{ path('formation_edit', {'id': formation.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">Aucun enregistrement trouvé</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
+
+ 

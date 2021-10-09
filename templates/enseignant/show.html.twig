@@ -1,0 +1,49 @@
+{% extends 'template.html.twig' %}
+{% block title %}Enseignant{% endblock %}
+
+{% block body %}
+    <h1>Enseignant</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ enseignant.id }}</td>
+            </tr>
+            <tr>
+                <th>Cin</th>
+                <td>{{ enseignant.cin }}</td>
+            </tr>
+            <tr>
+                <th>Firstname</th>
+                <td>{{ enseignant.firstname }}</td>
+            </tr>
+            <tr>
+                <th>Lastname</th>
+                <td>{{ enseignant.lastname }}</td>
+            </tr>
+            <tr>
+                <th>Diplome</th>
+                <td>{{ enseignant.diplome }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ enseignant.email }}</td>
+            </tr>
+            <tr>
+                <th>Phone</th>
+                <td>{{ enseignant.phone }}</td>
+            </tr>
+            <tr>
+                <th>Contrat</th>
+                <td>{{ enseignant.contrat }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('enseignant_index') }}"><button type="button" class="btn btn-outline-warning">retour à la liste</button></a>
+
+    <a href="{{ path('enseignant_edit', {'id': enseignant.id}) }}"><button type="button" class="btn btn-outline-warning">Modifier</button></a>
+
+    {{ include('enseignant/_delete_form.html.twig') }}
+{% endblock %}
